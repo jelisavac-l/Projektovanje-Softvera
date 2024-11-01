@@ -5,7 +5,7 @@
 package client.ui;
 
 import client.domen.Clan;
-import client.ui.faktura.Faktura;
+import client.ui.faktura.FormFaktura;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -113,7 +113,7 @@ public class Login extends javax.swing.JFrame {
                 // Pronadjen korisnik
                 if (c.getKorisnickoIme().equals(unesenoIme)
                         && c.getSifra().equals(unesenaSifra)) {
-                    new Faktura().setVisible(true);
+                    new FormFaktura().setVisible(true);
                     this.dispose();
                     return;
                 }

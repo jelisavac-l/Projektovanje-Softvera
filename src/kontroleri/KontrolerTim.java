@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author luka
  */
-public class KontolerTim {
+public class KontrolerTim {
     public static List<Tim> getList() throws SQLException {
         List<Tim> lista = new LinkedList<>();
         String query = "SELECT * FROM tim ORDER BY naziv ASC";

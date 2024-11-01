@@ -4,18 +4,26 @@
  */
 package client.ui.faktura;
 
+import client.domen.Faktura;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import kontroleri.KontrolerFaktura;
 
 /**
  *
  * @author luka
  */
-public class Faktura extends javax.swing.JFrame {
+public class FormFaktura extends javax.swing.JFrame {
 
     /**
      * Creates new form Faktura
      */
-    public Faktura() {
+    public FormFaktura() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
     }
@@ -33,6 +41,7 @@ public class Faktura extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         pnlWrapper = new javax.swing.JPanel();
         pnlTools = new javax.swing.JPanel();
+        btnLoad = new javax.swing.JButton();
         btnDodaj = new javax.swing.JButton();
         btnIzmeni = new javax.swing.JButton();
         btnTrazi = new javax.swing.JButton();
@@ -89,6 +98,14 @@ public class Faktura extends javax.swing.JFrame {
         pnlTools.setMaximumSize(new java.awt.Dimension(32767, 40));
         pnlTools.setPreferredSize(new java.awt.Dimension(1040, 40));
         pnlTools.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
+
+        btnLoad.setText("Učitaj");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+        pnlTools.add(btnLoad);
 
         btnDodaj.setText("Dodaj");
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
@@ -439,44 +456,37 @@ public class Faktura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIzmeniActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            List<Faktura> lf = KontrolerFaktura.getList();
+            TableModel tm = tblFaktura.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) tm;
+            dtm.setRowCount(0);
+            for(Faktura f : lf)
+            {
+                Object[] row = new Object[]{
+                    f.getId(),
+                    f.getSponzor().getNaziv(),
+                    f.getDatum(),
+                    f.getUkupnaCena(),
+                    f.getPdv(),
+                    f.getClan().getIme() + " " + f.getClan().getPrezime()
+                };
+                
+                dtm.addRow(row);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Faktura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Faktura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Faktura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Faktura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        
+    }//GEN-LAST:event_btnLoadActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Faktura().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnIzmeni;
+    private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnStornijaj;
     private javax.swing.JButton btnTrazi;
     private javax.swing.ButtonGroup buttonGroup1;

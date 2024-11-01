@@ -72,6 +72,14 @@
             <Property name="alignment" type="int" value="3"/>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JButton" name="btnLoad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="U&#x10d;itaj"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadActionPerformed"/>
+              </Events>
+            </Component>
             <Component class="javax.swing.JButton" name="btnDodaj">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dodaj"/>

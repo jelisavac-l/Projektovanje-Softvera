@@ -1,7 +1,7 @@
 package client;
-
 import client.domen.Clan;
 import client.domen.ClanTim;
+import client.domen.Faktura;
 import client.domen.Sponzor;
 import client.domen.Tim;
 import client.domen.Usluga;
@@ -19,15 +19,15 @@ public class MainClient {
             FlatLightLaf.setup();
             new Login().setVisible(true);
             
-            
+            List<Faktura> lf = KontrolerFaktura.getList();
             List<Clan> lc = KontrolerClan.getList();
             List<ClanTim> lct = KontrolerClanTim.getList();
-            List<Tim> lt = KontolerTim.getList();
+            List<Tim> lt = KontrolerTim.getList();
             List<Sponzor> ls = KontrolerSponzor.getList();
             List<Usluga> lu = KontrolerUsluga.getList();
             
             
-            if(lc == null || lct == null || lt == null || ls == null || lu == null)
+            if(lc == null || lct == null || lt == null || ls == null || lu == null || lf == null)
                 System.out.println("Ne radi nest");
             else System.out.println("Sve radi!");
         } catch (SQLException ex) {
