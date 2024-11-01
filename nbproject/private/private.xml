@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/broker/DatabaseConnection.java</file>
             <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/faktura/Faktura.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/MainMenu.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/Login.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/MainClient.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerClan.java</file>
         </group>
     </open-files>
 </project-private>

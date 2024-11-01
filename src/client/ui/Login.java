@@ -4,7 +4,15 @@
  */
 package client.ui;
 
+import client.domen.Clan;
 import client.ui.faktura.Faktura;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import kontroleri.KontrolerClan;
 
 /**
  *
@@ -96,11 +104,34 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        new Faktura().setVisible(true);
-        this.dispose();
+        String unesenoIme = txtUsername.getText();
+        String unesenaSifra = pwdPassword.getText();    // DEPRECATED
+        List<Clan> listaClanova;
+        try {
+            listaClanova = KontrolerClan.getList();
+            for (Clan c : listaClanova) {
+                // Pronadjen korisnik
+                if (c.getKorisnickoIme().equals(unesenoIme)
+                        && c.getSifra().equals(unesenaSifra)) {
+                    new Faktura().setVisible(true);
+                    this.dispose();
+                    return;
+                }
+            }
+
+            // Nema podudaranja
+            JOptionPane.showMessageDialog(null,
+                    "Neispravan unos",
+                    "Molimo pokušajte ponovo",
+                    JOptionPane.WARNING_MESSAGE);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
