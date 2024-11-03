@@ -25,6 +25,7 @@ public class MainClient {
             List<Tim> lt = KontrolerTim.getList();
             List<Sponzor> ls = KontrolerSponzor.getList();
             List<Usluga> lu = KontrolerUsluga.getList();
+            KontrolerClan.update(lc.get(2), lc.get(3));
             
             
             if(lc == null || lct == null || lt == null || ls == null || lu == null || lf == null)

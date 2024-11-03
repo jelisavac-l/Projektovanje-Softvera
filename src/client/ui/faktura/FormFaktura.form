@@ -11,14 +11,34 @@
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="mnDokumenti">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Dokumenti"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="mnPruzalac">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Pruzalac"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mnPrimalac">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Primalac"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mnSifrarnici">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x160;ifrarnici"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mnPodesavanja">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pode&#x161;avanja"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="mnInfo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Info"/>
           </Properties>
         </Menu>
       </SubComponents>
@@ -187,6 +207,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblFakturaMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -84,8 +84,12 @@ public class FormFaktura extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtCena = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnDokumenti = new javax.swing.JMenu();
+        mnPruzalac = new javax.swing.JMenu();
+        mnPrimalac = new javax.swing.JMenu();
+        mnSifrarnici = new javax.swing.JMenu();
+        mnPodesavanja = new javax.swing.JMenu();
+        mnInfo = new javax.swing.JMenu();
 
         jLabel12.setText("jLabel12");
 
@@ -163,6 +167,11 @@ public class FormFaktura extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblFaktura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFakturaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblFaktura);
@@ -433,11 +442,23 @@ public class FormFaktura extends javax.swing.JFrame {
 
         getContentPane().add(pnlInfo);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        mnDokumenti.setText("Dokumenti");
+        jMenuBar1.add(mnDokumenti);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        mnPruzalac.setText("Pruzalac");
+        jMenuBar1.add(mnPruzalac);
+
+        mnPrimalac.setText("Primalac");
+        jMenuBar1.add(mnPrimalac);
+
+        mnSifrarnici.setText("Šifrarnici");
+        jMenuBar1.add(mnSifrarnici);
+
+        mnPodesavanja.setText("Podešavanja");
+        jMenuBar1.add(mnPodesavanja);
+
+        mnInfo.setText("Info");
+        jMenuBar1.add(mnInfo);
 
         setJMenuBar(jMenuBar1);
 
@@ -458,30 +479,40 @@ public class FormFaktura extends javax.swing.JFrame {
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         try {
-            List<Faktura> lf = KontrolerFaktura.getList();
-            TableModel tm = tblFaktura.getModel();
-            DefaultTableModel dtm = (DefaultTableModel) tm;
-            dtm.setRowCount(0);
-            for(Faktura f : lf)
-            {
-                Object[] row = new Object[]{
-                    f.getId(),
-                    f.getSponzor().getNaziv(),
-                    f.getDatum(),
-                    f.getUkupnaCena(),
-                    f.getPdv(),
-                    f.getClan().getIme() + " " + f.getClan().getPrezime()
-                };
-                
-                dtm.addRow(row);
-            }
-            
+            napuniTabelu();
         } catch (SQLException ex) {
             Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_btnLoadActionPerformed
 
+    private void tblFakturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFakturaMouseClicked
+
+
+    }//GEN-LAST:event_tblFakturaMouseClicked
+
+    private void napuniTabelu() throws SQLException {
+        List<Faktura> lf = KontrolerFaktura.getList();
+        TableModel tm = tblFaktura.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tm;
+        dtm.setRowCount(0);
+        for(Faktura f : lf)
+        {
+            Object[] row = new Object[]{
+                f.getId(),
+                f.getSponzor().getNaziv(),
+                f.getDatum(),
+                f.getUkupnaCena(),
+                f.getPdv(),
+                f.getClan().getIme() + " " + f.getClan().getPrezime()
+            };
+            
+            dtm.addRow(row);
+        }
+    }
+    
+    // Sve ucitane fakature
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -502,8 +533,6 @@ public class FormFaktura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -513,6 +542,12 @@ public class FormFaktura extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JMenu mnDokumenti;
+    private javax.swing.JMenu mnInfo;
+    private javax.swing.JMenu mnPodesavanja;
+    private javax.swing.JMenu mnPrimalac;
+    private javax.swing.JMenu mnPruzalac;
+    private javax.swing.JMenu mnSifrarnici;
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JPanel pnlTools;
     private javax.swing.JPanel pnlWrapper;

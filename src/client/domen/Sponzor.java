@@ -8,6 +8,8 @@ package client.domen;
  *
  * @author luka
  */
+
+// Nije abstract jos uvek, zbog testiranja...
 public class Sponzor {
     private Long id;
     private String naziv;

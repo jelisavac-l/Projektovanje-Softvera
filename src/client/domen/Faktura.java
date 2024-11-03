@@ -5,6 +5,7 @@
 package client.domen;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,6 +19,18 @@ public class Faktura {
     private boolean storinirana;
     private Clan clan;
     private Sponzor sponzor;
+    private List<Usluga> listaUsluga;
+    
+    public Faktura(Long id, Date datum, double ukupnaCena, double pdv, boolean storinirana, Clan clan, Sponzor sponzor, List<Usluga> listaUsluga) {
+        this.id = id;
+        this.datum = datum;
+        this.ukupnaCena = ukupnaCena;
+        this.pdv = pdv;
+        this.storinirana = storinirana;
+        this.clan = clan;
+        this.sponzor = sponzor;
+        this.listaUsluga = listaUsluga;
+    }
 
     public Faktura(Long id, Date datum, double ukupnaCena, double pdv, boolean storinirana, Clan clan, Sponzor sponzor) {
         this.id = id;
@@ -27,6 +40,14 @@ public class Faktura {
         this.storinirana = storinirana;
         this.clan = clan;
         this.sponzor = sponzor;
+    }
+
+    public List<Usluga> getListaUsluga() {
+        return listaUsluga;
+    }
+
+    public void setListaUsluga(List<Usluga> listaUsluga) {
+        this.listaUsluga = listaUsluga;
     }
 
     public Long getId() {
