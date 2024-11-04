@@ -20,7 +20,7 @@ public class MainClient {
     public static void main(String[] args) {
         try {
             FlatMacLightLaf.setup();
-            new FormTim().setVisible(true);
+            new Login().setVisible(true);
             
             List<Faktura> lf = KontrolerFaktura.getList();
             List<Clan> lc = KontrolerClanTim.getClanoviTima(new Tim(1L, null, null));

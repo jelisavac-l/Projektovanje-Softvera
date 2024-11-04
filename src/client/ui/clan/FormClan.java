@@ -23,6 +23,7 @@ public class FormClan extends javax.swing.JFrame {
      */
     public FormClan() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
         initComponents();
         initTableWidth();
         try {
@@ -30,7 +31,7 @@ public class FormClan extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

@@ -113,7 +113,7 @@ public class Login extends javax.swing.JFrame {
                 // Pronadjen korisnik
                 if (c.getKorisnickoIme().equals(unesenoIme)
                         && c.getSifra().equals(unesenaSifra)) {
-                    new FormFaktura().setVisible(true);
+                    new MainMenu().setVisible(true);
                     this.dispose();
                     return;
                 }

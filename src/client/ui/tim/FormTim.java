@@ -24,8 +24,16 @@ public class FormTim extends javax.swing.JFrame {
      */
     public FormTim() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
         initComponents();
-
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        
+        try {
+            napuniTabeluTim();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormTim.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -160,11 +168,27 @@ public class FormTim extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoad1ActionPerformed
 
     private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-        // TODO add your handling code here:
+        new CreateTim(this, true).setVisible(true);
+        try {
+            napuniTabeluTim();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAdd1ActionPerformed
 
     private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
-        // TODO add your handling code here:
+        int row = tblTim.getSelectedRow();
+        if(row < 0) {
+            JOptionPane.showMessageDialog(null, "Nije odabran red!", "Sistem", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        new UpdateTim(null, true, new Tim((Long)tblTim.getValueAt(row, 0), (String)tblTim.getValueAt(row, 1))).setVisible(true);
+        try {
+            napuniTabeluTim();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormTim.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnUpdate1ActionPerformed
 
     private void tblTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTimMouseClicked
