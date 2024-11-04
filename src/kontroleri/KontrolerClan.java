@@ -114,6 +114,30 @@ public class KontrolerClan {
         conn.close();
 
     }
+    
+        public static void updateSafe(Clan stari, Clan novi) throws SQLException {
+        String query = "UPDATE ProjektovanjeSoftvera1.clan "
+                + "SET ime=?, prezime=?, korisnickoIme=?, email=?, telefon=? "
+                + "WHERE id=?";
+
+        Connection conn = DatabaseConnection.getInstance();
+        PreparedStatement ps = conn.prepareStatement(query);
+
+        ps.setString(1, novi.getIme());
+        ps.setString(2, novi.getPrezime());
+        ps.setString(3, novi.getKorisnickoIme());
+        ps.setString(4, novi.getEmail());
+        ps.setString(5, novi.getTelefon());
+        ps.setLong(6, stari.getId());
+
+        System.out.println(ps);
+
+        ps.executeUpdate();
+
+        ps.close();
+        conn.close();
+
+    }
 
     public static void delete(Clan clan) throws SQLException {
         throw new UnsupportedOperationException("Dok ne smislim, nema..");

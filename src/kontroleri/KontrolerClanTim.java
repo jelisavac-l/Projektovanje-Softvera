@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class KontrolerClanTim {
         Date datumPocetka;
         List<ClanTim> lista = new LinkedList<>();
         // Rekao jedan mudar covek da svalim sav fizicki posao na bazu podataka pa:
-        String query = "SELECT \n" 
+        String query = "SELECT \n"
                 + "c.id AS 'idclan',\n"
                 + "c.ime,\n"
                 + "c.prezime,\n"
@@ -57,5 +58,41 @@ public class KontrolerClanTim {
         st.close();
         conn.close();
         return lista;
+    }
+
+    public static List<Clan> getClanoviTima(Tim tim) throws SQLException {
+        List<Clan> clanoviTima = new LinkedList<>();
+        String query = "SELECT \n"
+                + "c.id AS 'idclan',\n"
+                + "c.ime,\n"
+                + "c.prezime,\n"
+                + "c.korisnickoIme,\n"
+                + "c.email,\n"
+                + "c.telefon,\n"
+                + "t.id AS 'idtim',\n"
+                + "t.naziv,\n"
+                + "ct.datumPocetka\n"
+                + "FROM `clan-tim` ct JOIN clan c ON (ct.clan = c.id) JOIN tim t ON (ct.tim = t.id)"
+                + "WHERE t.id=?";
+        Connection conn = DatabaseConnection.getInstance();
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setLong(1, tim.getId());
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            clanoviTima.add(new Clan(rs.getLong("idclan"),
+                    rs.getString("ime"),
+                    rs.getString("prezime"),
+                    rs.getString("korisnickoIme"),
+                    null,
+                    rs.getString("email"),
+                    rs.getString("telefon")));
+        }
+        
+        rs.close();
+        ps.close();
+        conn.close();
+        
+        return clanoviTima;
     }
 }

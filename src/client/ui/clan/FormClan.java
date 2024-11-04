@@ -1,5 +1,17 @@
 package client.ui.clan;
 
+import client.domen.Clan;
+import client.domen.Tim;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author luka
@@ -10,7 +22,15 @@ public class FormClan extends javax.swing.JFrame {
      * Creates new form FormClan
      */
     public FormClan() {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        initTableWidth();
+        try {
+            napuniTabelu();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -22,11 +42,80 @@ public class FormClan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        btnLoad = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblClan = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel2.setMaximumSize(new java.awt.Dimension(32767, 40));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1156, 40));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        btnLoad.setText("Učitaj");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnLoad);
+
+        btnAdd.setText("Dodaj");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAdd);
+
+        btnUpdate.setText("Izmeni");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnUpdate);
+
+        btnSearch.setText("Traži");
+        jPanel2.add(btnSearch);
+
+        jTextField1.setPreferredSize(new java.awt.Dimension(420, 25));
+        jPanel2.add(jTextField1);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
+
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+
+        tblClan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Šifra", "Ime", "Prezime", "Korisničko ime", "Email", "Telefon"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblClan);
+
+        jPanel1.add(jScrollPane1);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -36,58 +125,97 @@ public class FormClan extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1156, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 696, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormClan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormClan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormClan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormClan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            napuniTabelu();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnLoadActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormClan().setVisible(true);
-            }
-        });
-    }
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        new CreateClan(this, true).setVisible(true);
+        try {
+            napuniTabelu();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        int selectedRow = tblClan.getSelectedRow();
+        // Ako nije selektovan ni jedan red, gornja f-ja vraca vrednost -1
+        if(selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Nije odabran ni jedan red!", "Sistem", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        System.out.println(selectedRow);
+        // Bitan je samo ID za izmenu.
+        new UpdateClan(this, true, new Clan(
+                (Long)tblClan.getValueAt(selectedRow, 0), 
+                (String)tblClan.getValueAt(selectedRow, 1), 
+                (String)tblClan.getValueAt(selectedRow, 2), 
+                (String)tblClan.getValueAt(selectedRow, 3), 
+                "NULL", 
+                (String)tblClan.getValueAt(selectedRow, 4), 
+                (String)tblClan.getValueAt(selectedRow, 5))).setVisible(true);
+        
+        try {
+            napuniTabelu();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnLoad;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblClan;
     // End of variables declaration//GEN-END:variables
+
+    private void initTableWidth() { // Moze i ovako?!
+        TableColumnModel columnModel = tblClan.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(50);
+        columnModel.getColumn(0).setMaxWidth(50);
+        columnModel.getColumn(1).setPreferredWidth(250);
+        columnModel.getColumn(1).setMaxWidth(250);
+        columnModel.getColumn(2).setPreferredWidth(250);
+        columnModel.getColumn(2).setMaxWidth(250);
+        columnModel.getColumn(3).setPreferredWidth(250);
+        columnModel.getColumn(3).setMaxWidth(250);
+    }
+
+    private void napuniTabelu() throws SQLException {
+        List<Clan> lc = kontroleri.KontrolerClan.getList();
+        TableModel tm = tblClan.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tm;
+        dtm.setRowCount(0);
+        for(Clan c : lc)
+        {
+            Object[] row = new Object[]{
+                c.getId(),
+                c.getIme(),
+                c.getPrezime(),
+                c.getKorisnickoIme(),
+                c.getEmail(),
+                c.getTelefon()
+            };
+            dtm.addRow(row);
+        }
+        
+    }
 }

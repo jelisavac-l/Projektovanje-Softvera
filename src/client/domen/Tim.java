@@ -4,6 +4,8 @@
  */
 package client.domen;
 
+import java.util.List;
+
 /**
  *
  * @author luka
@@ -11,6 +13,13 @@ package client.domen;
 public class Tim {
     private Long id;
     private String naziv;
+    private List<Clan> listaClanova;
+
+    public Tim(Long id, String naziv, List<Clan> listaClanova) {
+        this.id = id;
+        this.naziv = naziv;
+        this.listaClanova = listaClanova;
+    }
 
     public Tim(Long id, String naziv) {
         this.id = id;
@@ -31,6 +40,14 @@ public class Tim {
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
+    }
+
+    public List<Clan> getListaClanova() {
+        return listaClanova;
+    }
+
+    public void setListaClanova(List<Clan> listaClanova) {
+        this.listaClanova = listaClanova;
     }
     
 }
