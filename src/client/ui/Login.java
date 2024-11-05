@@ -4,6 +4,7 @@
  */
 package client.ui;
 
+import audit.Audit;
 import client.domen.Clan;
 import client.ui.faktura.FormFaktura;
 import java.sql.SQLException;
@@ -113,6 +114,11 @@ public class Login extends javax.swing.JFrame {
                 // Pronadjen korisnik
                 if (c.getKorisnickoIme().equals(unesenoIme)
                         && c.getSifra().equals(unesenaSifra)) {
+                    
+                    // Audit
+                    Audit instance = Audit.getInstance();
+                    instance.setClan(c);
+                    
                     new MainMenu().setVisible(true);
                     this.dispose();
                     return;

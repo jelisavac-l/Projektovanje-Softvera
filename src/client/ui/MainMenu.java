@@ -4,6 +4,7 @@
  */
 package client.ui;
 
+import audit.Audit;
 import client.domen.Faktura;
 import client.ui.clan.FormClan;
 import client.ui.faktura.FormFaktura;
@@ -21,6 +22,9 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         setLocationRelativeTo(this);
+        setExtendedState(MAXIMIZED_BOTH);
+        Audit instance = Audit.getInstance();
+        lbUser.setText("Ulogovani ste kao: " + instance.getClan().getIme() + " " + instance.getClan().getPrezime());
     }
 
     /**
@@ -32,8 +36,13 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 115), new java.awt.Dimension(0, 115), new java.awt.Dimension(32767, 115));
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15), new java.awt.Dimension(32767, 15));
+        lbUser = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -50,10 +59,38 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        jLabel1.setText("SZPSO 554");
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanel1.add(filler1);
 
-        jLabel2.setText("Sistem za praćenje sponzorstava organizacije. LJ 554/22");
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SZPSO 554");
+        jLabel1.setMaximumSize(new java.awt.Dimension(1920, 50));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1920, 50));
+        jPanel1.add(jLabel1);
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Sistem za praćenje sponzorstava organizacije. (L. Jelisavac 554/22)");
+        jLabel2.setMaximumSize(new java.awt.Dimension(1920, 24));
+        jLabel2.setPreferredSize(new java.awt.Dimension(1920, 12));
+        jPanel1.add(jLabel2);
+
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("https://github.com/jelisavac-l/Projektovanje-Softvera");
+        jLabel3.setMaximumSize(new java.awt.Dimension(1920, 24));
+        jLabel3.setPreferredSize(new java.awt.Dimension(1920, 12));
+        jPanel1.add(jLabel3);
+        jPanel1.add(filler2);
+
+        lbUser.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        lbUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbUser.setText("Ulogovani korisnik:");
+        lbUser.setMaximumSize(new java.awt.Dimension(1920, 24));
+        jPanel1.add(lbUser);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         jMenu3.setText("Dokumenta");
 
@@ -127,29 +164,6 @@ public class MainMenu extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(48, 48, 48))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(312, Short.MAX_VALUE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,8 +193,11 @@ public class MainMenu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -194,5 +211,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbUser;
     // End of variables declaration//GEN-END:variables
 }
