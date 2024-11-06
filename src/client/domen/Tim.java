@@ -50,4 +50,10 @@ public class Tim {
         this.listaClanova = listaClanova;
     }
     
+    @Override
+    public String toString()
+    {
+        return "[" + String.format("%03d", id) + "] " + naziv;
+    }
+    
 }

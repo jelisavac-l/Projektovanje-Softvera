@@ -55,6 +55,8 @@ public class FormTim extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTim = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnUbaci = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblClan = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -125,6 +127,18 @@ public class FormTim extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblTim);
 
         jPanel1.add(jScrollPane1);
+
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        btnUbaci.setText("Ubaci člana");
+        btnUbaci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbaciActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnUbaci);
+
+        jPanel1.add(jPanel2);
 
         tblClan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,16 +216,22 @@ public class FormTim extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblTimMouseClicked
 
+    private void btnUbaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbaciActionPerformed
+        new CreateClanTim(null, true).setVisible(true);
+    }//GEN-LAST:event_btnUbaciActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnLoad1;
     private javax.swing.JButton btnSearch1;
+    private javax.swing.JButton btnUbaci;
     private javax.swing.JButton btnUpdate1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

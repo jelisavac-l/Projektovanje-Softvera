@@ -88,11 +88,26 @@ public class KontrolerClanTim {
                     rs.getString("email"),
                     rs.getString("telefon")));
         }
-        
+
         rs.close();
         ps.close();
         conn.close();
-        
+
         return clanoviTima;
+    }
+
+    public void create(Clan clan, Tim tim) throws SQLException {
+        String query = "INSERT INTO ProjektovanjeSoftvera1.`clan-tim`\n"
+                + "(clan, tim, datumPocetka)\n"
+                + "VALUES(?, ?, NOW());";
+
+        Connection conn = DatabaseConnection.getInstance();
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setLong(1, clan.getId());
+        ps.setLong(2, tim.getId());
+        ps.execute();
+        
+        ps.close();
+        conn.close();
     }
 }

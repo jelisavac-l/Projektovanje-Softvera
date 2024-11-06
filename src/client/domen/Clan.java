@@ -83,4 +83,9 @@ public class Clan {
         this.telefon = telefon;
     }
     
+    @Override
+    public String toString()
+    {
+        return "[" + String.format("%03d", id) + "] " + ime + " " + prezime;
+    }
 }
