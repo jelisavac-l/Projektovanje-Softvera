@@ -96,7 +96,7 @@ public class KontrolerClanTim {
         return clanoviTima;
     }
 
-    public void create(Clan clan, Tim tim) throws SQLException {
+    public static void create(Clan clan, Tim tim) throws SQLException {
         String query = "INSERT INTO ProjektovanjeSoftvera1.`clan-tim`\n"
                 + "(clan, tim, datumPocetka)\n"
                 + "VALUES(?, ?, NOW());";

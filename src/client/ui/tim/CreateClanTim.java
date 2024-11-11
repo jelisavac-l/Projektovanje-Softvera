@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import kontroleri.KontrolerClan;
+import kontroleri.KontrolerClanTim;
 import kontroleri.KontrolerTim;
 
 /**
@@ -144,7 +145,15 @@ public class CreateClanTim extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUbaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbaciActionPerformed
-
+        Clan c = (Clan) cbClan.getSelectedItem();
+        Tim t = (Tim) cbTim.getSelectedItem();
+        try {
+            KontrolerClanTim.create(c, t);
+            JOptionPane.showMessageDialog(null, "Angažovanje uspešno dodato!", "Sistem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateClanTim.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUbaciActionPerformed
 
 
