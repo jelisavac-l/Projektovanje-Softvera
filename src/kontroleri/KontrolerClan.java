@@ -2,6 +2,7 @@ package kontroleri;
 
 import broker.DatabaseConnection;
 import client.domen.Clan;
+import exepts.ModalException;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -64,7 +65,16 @@ public class KontrolerClan {
         return lista;
     }
 
-    public static void create(Clan clan) throws SQLException {
+    public static void create(Clan clan) throws SQLException, ModalException {
+        
+        // Proveriti da li postoji sa istim korisnickim imenom
+        List<Clan> lc = getList();
+        for(Clan c : lc) {
+            if(c.getKorisnickoIme().equals(clan.getKorisnickoIme()))
+                throw new ModalException("Uneli ste postojeće korisničko ime!");
+        }
+        
+        
         String query = "INSERT INTO ProjektovanjeSoftvera1.clan\n"
                 + "(ime, prezime, korisnickoIme, sifra, email, telefon)\n"
                 + "VALUES(?, ?, ?, ?, ?, ?);";

@@ -1,6 +1,7 @@
 package client.ui.clan;
 
 import client.domen.Clan;
+import exepts.ModalException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,9 +35,9 @@ public class CreateClan extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtSifra = new javax.swing.JTextField();
         txtKorisnickoIme = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        pwdSifra = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtIme = new javax.swing.JTextField();
@@ -62,11 +63,11 @@ public class CreateClan extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSifra, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5)
-                    .addComponent(txtKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(txtKorisnickoIme, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addComponent(pwdSifra))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -79,7 +80,7 @@ public class CreateClan extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSifra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pwdSifra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -189,18 +190,21 @@ public class CreateClan extends javax.swing.JDialog {
                 txtIme.getText(),
                 txtPrezime.getText(),
                 txtKorisnickoIme.getText(),
-                txtSifra.getText(), 
+                pwdSifra.getText(), 
                 txtEmail.getText(),
                 txtTelefon.getText());
         
         try {
             kontroleri.KontrolerClan.create(novi);
+            JOptionPane.showMessageDialog(null, "Korisnik uspešno dodat!", "Sistem", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(CreateClan.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ModalException ex) {
+            System.err.println(ex.getMessage());
         }
         
-        JOptionPane.showMessageDialog(null, "Korisnik uspešno dodat!", "Sistem", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
+        
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -219,11 +223,11 @@ public class CreateClan extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField pwdSifra;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtKorisnickoIme;
     private javax.swing.JTextField txtPrezime;
-    private javax.swing.JTextField txtSifra;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }
