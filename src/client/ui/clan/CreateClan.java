@@ -3,6 +3,7 @@ package client.ui.clan;
 import client.domen.Clan;
 import exepts.ModalException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -183,9 +184,10 @@ public class CreateClan extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        
+            
         Clan novi = null;
-
-        // TODO: Zastiti se od neispravnog unosa
+        
         novi = new Clan(0L,
                 txtIme.getText(),
                 txtPrezime.getText(),

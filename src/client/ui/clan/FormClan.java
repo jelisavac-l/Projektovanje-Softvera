@@ -205,17 +205,18 @@ public class FormClan extends javax.swing.JFrame {
         TableModel tm = tblClan.getModel();
         DefaultTableModel dtm = (DefaultTableModel) tm;
         dtm.setRowCount(0);
+        
         for(Clan c : lc)
         {
-            Object[] row = new Object[]{
-                c.getId(),
-                c.getIme(),
-                c.getPrezime(),
-                c.getKorisnickoIme(),
-                c.getEmail(),
-                c.getTelefon()
-            };
-            dtm.addRow(row);
+                dtm.addRow(new Object[]{
+                    c.getId(),
+                    c.getIme(),
+                    c.getPrezime(),
+                    c.getKorisnickoIme(),
+                    c.getEmail(),
+                    c.getTelefon()
+                }
+            );
         }
         
     }

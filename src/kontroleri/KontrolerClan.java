@@ -67,12 +67,20 @@ public class KontrolerClan {
 
     public static void create(Clan clan) throws SQLException, ModalException {
         
-        // Proveriti da li postoji sa istim korisnickim imenom
+        // Validacija email-a
+        if(!clan.getKorisnickoIme().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
+            throw new ModalException("Unesen je neispravan email.");
+        
+        // Validacija korisnickog imena
         List<Clan> lc = getList();
         for(Clan c : lc) {
             if(c.getKorisnickoIme().equals(clan.getKorisnickoIme()))
-                throw new ModalException("Uneli ste postojeće korisničko ime!");
+                throw new ModalException("Uneseno je postojeće korisničko ime!");
         }
+        
+        // Validacija ostalih parametara
+        if(clan.getIme() == null || clan.getPrezime() == null || clan.getTelefon() == null)
+            throw new ModalException("Niste uneli sve parametre!");
         
         
         String query = "INSERT INTO ProjektovanjeSoftvera1.clan\n"
