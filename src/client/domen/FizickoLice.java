@@ -23,5 +23,12 @@ public class FizickoLice extends Sponzor {
     public void setJmbg(String jmbg) {
         this.jmbg = jmbg;
     }
+
+    @Override
+    public String toString() {
+        return super.getNaziv() + " [FL " + jmbg + " ] ";
+    }
+    
+    
     
 }

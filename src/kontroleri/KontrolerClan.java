@@ -38,7 +38,6 @@ public class KontrolerClan {
 
         rs.close();
         st.close();
-        conn.close();
         return lista;
     }
 
@@ -61,7 +60,6 @@ public class KontrolerClan {
 
         rs.close();
         st.close();
-        conn.close();
         return lista;
     }
 
@@ -102,10 +100,6 @@ public class KontrolerClan {
         ps.execute();
         
         ps.close();
-        conn.close();
-        
-        
-        
     }
 
     public static void update(Clan stari, Clan novi) throws SQLException {
@@ -129,7 +123,6 @@ public class KontrolerClan {
         ps.executeUpdate();
 
         ps.close();
-        conn.close();
 
     }
     
@@ -153,7 +146,6 @@ public class KontrolerClan {
         ps.executeUpdate();
 
         ps.close();
-        conn.close();
 
     }
 

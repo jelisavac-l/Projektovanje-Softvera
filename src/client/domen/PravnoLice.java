@@ -34,5 +34,10 @@ public class PravnoLice extends Sponzor {
         this.PIB = PIB;
     }
     
+    @Override
+    public String toString() {
+        return super.getNaziv() + " [PL " + regBr + " | " + PIB + " ] ";
+    }
+    
     
 }
