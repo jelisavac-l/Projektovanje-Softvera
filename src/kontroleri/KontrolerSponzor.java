@@ -149,4 +149,6 @@ public class KontrolerSponzor {
         
         ps.close();
     }
+    
+    // TODO: Update pravnog i fizickog lica (mnogo kucanja)
 }

@@ -65,6 +65,8 @@ public class KontrolerClan {
 
     public static void create(Clan clan) throws SQLException, ModalException {
         
+        // POMERITI VALIDACIJU NA FORMU!
+        
         // Validacija email-a
         if(!clan.getKorisnickoIme().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
             throw new ModalException("Unesen je neispravan email.");

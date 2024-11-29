@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerUsluga.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/clan/CreateClan.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerPL.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/sponzor/FormSponzor.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/sponzor/CreateSponzor.java</file>
             <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerClan.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerTim.java</file>
         </group>
     </open-files>
 </project-private>

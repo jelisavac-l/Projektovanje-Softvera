@@ -8,6 +8,7 @@ import audit.Audit;
 import client.domen.Faktura;
 import client.ui.clan.FormClan;
 import client.ui.faktura.FormFaktura;
+import client.ui.sponzor.FormSponzor;
 import client.ui.tim.FormTim;
 
 /**
@@ -24,6 +25,7 @@ public class MainMenu extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setExtendedState(MAXIMIZED_BOTH);
         Audit instance = Audit.getInstance();
+        this.setTitle("SZPSO 0.0.1 | " + instance.getClan());
         lbUser.setText("Ulogovani ste kao: " + instance.getClan().getIme() + " " + instance.getClan().getPrezime());
     }
 
@@ -94,6 +96,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu3.setText("Dokumenta");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setText("Faktura");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +109,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu4.setText("Pružalac");
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem2.setText("Član");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +122,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu1.setText("Primalac");
 
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem3.setText("Sponzor");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +151,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenu5.setText("Šifrarnici");
 
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem6.setText("Tim");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +179,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+        new FormSponzor().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
