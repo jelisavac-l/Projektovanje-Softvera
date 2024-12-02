@@ -5,7 +5,7 @@
 package client.ui;
 
 import audit.Audit;
-import client.domen.Clan;
+import domen.Clan;
 import client.ui.faktura.FormFaktura;
 import java.sql.SQLException;
 import java.util.HashMap;

@@ -2,21 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package client.domen;
+package domen;
+
+import java.util.List;
 
 /**
  *
  * @author luka
  */
-public class Usluga {
+public class Tim {
     private Long id;
     private String naziv;
-    private double cena;
+    private List<Clan> listaClanova;
 
-    public Usluga(Long id, String naziv, double cena) {
+    public Tim(Long id, String naziv, List<Clan> listaClanova) {
         this.id = id;
         this.naziv = naziv;
-        this.cena = cena;
+        this.listaClanova = listaClanova;
+    }
+
+    public Tim(Long id, String naziv) {
+        this.id = id;
+        this.naziv = naziv;
     }
 
     public Long getId() {
@@ -35,19 +42,18 @@ public class Usluga {
         this.naziv = naziv;
     }
 
-    public double getCena() {
-        return cena;
+    public List<Clan> getListaClanova() {
+        return listaClanova;
     }
 
-    public void setCena(double cena) {
-        this.cena = cena;
+    public void setListaClanova(List<Clan> listaClanova) {
+        this.listaClanova = listaClanova;
     }
-
+    
     @Override
-    public String toString() {
-        return naziv + " [RSD " + cena + "]";
+    public String toString()
+    {
+        return "[" + String.format("%03d", id) + "] " + naziv;
     }
-    
-    
     
 }

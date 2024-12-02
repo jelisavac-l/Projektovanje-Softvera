@@ -2,23 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package client.domen;
+package domen;
 
 /**
  *
  * @author luka
  */
-
-// Nije abstract jos uvek, zbog testiranja...
-public class Sponzor {
+public class Usluga {
     private Long id;
     private String naziv;
-    private String kontakt;
+    private double cena;
 
-    public Sponzor(Long id, String naziv, String kontakt) {
+    public Usluga(Long id, String naziv, double cena) {
         this.id = id;
         this.naziv = naziv;
-        this.kontakt = kontakt;
+        this.cena = cena;
     }
 
     public Long getId() {
@@ -37,18 +35,19 @@ public class Sponzor {
         this.naziv = naziv;
     }
 
-    public String getKontakt() {
-        return kontakt;
+    public double getCena() {
+        return cena;
     }
 
-    public void setKontakt(String kontakt) {
-        this.kontakt = kontakt;
+    public void setCena(double cena) {
+        this.cena = cena;
     }
 
     @Override
     public String toString() {
-        return naziv;
+        return naziv + " [RSD " + cena + "]";
     }
+    
     
     
 }

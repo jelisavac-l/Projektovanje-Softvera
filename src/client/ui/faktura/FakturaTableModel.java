@@ -1,6 +1,6 @@
 package client.ui.faktura;
 
-import client.domen.Faktura;
+import domen.Faktura;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 

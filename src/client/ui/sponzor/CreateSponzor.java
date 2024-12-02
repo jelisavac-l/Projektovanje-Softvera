@@ -2,10 +2,10 @@ package client.ui.sponzor;
 
 import client.ui.tim.*;
 import client.ui.clan.*;
-import client.domen.Clan;
-import client.domen.FizickoLice;
-import client.domen.PravnoLice;
-import client.domen.Tim;
+import domen.Clan;
+import domen.FizickoLice;
+import domen.PravnoLice;
+import domen.Tim;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

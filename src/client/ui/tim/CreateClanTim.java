@@ -1,8 +1,8 @@
 package client.ui.tim;
 
 import client.ui.clan.*;
-import client.domen.Clan;
-import client.domen.Tim;
+import domen.Clan;
+import domen.Tim;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -159,8 +159,8 @@ public class CreateClanTim extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUbaci;
-    private javax.swing.JComboBox<client.domen.Clan> cbClan;
-    private javax.swing.JComboBox<client.domen.Tim> cbTim;
+    private javax.swing.JComboBox<domen.Clan> cbClan;
+    private javax.swing.JComboBox<domen.Tim> cbTim;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;

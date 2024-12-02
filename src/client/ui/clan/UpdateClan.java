@@ -1,6 +1,6 @@
 package client.ui.clan;
 
-import client.domen.Clan;
+import domen.Clan;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

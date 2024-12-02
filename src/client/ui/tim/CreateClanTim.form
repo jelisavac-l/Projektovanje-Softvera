@@ -103,7 +103,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;client.domen.Clan&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;domen.Clan&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -165,7 +165,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;client.domen.Tim&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;domen.Tim&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>

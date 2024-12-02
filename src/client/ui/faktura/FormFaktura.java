@@ -4,10 +4,10 @@
  */
 package client.ui.faktura;
 
-import client.domen.Faktura;
-import client.domen.FizickoLice;
-import client.domen.PravnoLice;
-import client.domen.StavkaFakture;
+import domen.Faktura;
+import domen.FizickoLice;
+import domen.PravnoLice;
+import domen.StavkaFakture;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;

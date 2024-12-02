@@ -1,13 +1,13 @@
 package kontroleri;
 
-import client.domen.Clan;
-import client.domen.Faktura;
-import client.domen.Sponzor;
+import domen.Clan;
+import domen.Faktura;
+import domen.Sponzor;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import broker.DatabaseConnection;
-import client.domen.StavkaFakture;
+import domen.StavkaFakture;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Statement;

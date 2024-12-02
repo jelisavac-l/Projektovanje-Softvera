@@ -1,9 +1,9 @@
 package client.ui.faktura;
 
-import client.domen.Faktura;
-import client.domen.Sponzor;
-import client.domen.StavkaFakture;
-import client.domen.Usluga;
+import domen.Faktura;
+import domen.Sponzor;
+import domen.StavkaFakture;
+import domen.Usluga;
 import client.ui.sponzor.CreateSponzor;
 import exepts.ModalException;
 import java.awt.event.MouseEvent;
@@ -500,8 +500,8 @@ public class CreateFaktura extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddSponzor;
     private javax.swing.JButton btnUbaci;
-    private javax.swing.JComboBox<client.domen.Sponzor> cbSponzor;
-    private javax.swing.JComboBox<client.domen.Usluga> cbUsluga;
+    private javax.swing.JComboBox<domen.Sponzor> cbSponzor;
+    private javax.swing.JComboBox<domen.Usluga> cbUsluga;
     private javax.swing.JButton jButton1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;

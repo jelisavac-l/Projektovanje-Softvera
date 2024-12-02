@@ -1,9 +1,9 @@
 package kontroleri;
 
 import broker.DatabaseConnection;
-import client.domen.FizickoLice;
-import client.domen.PravnoLice;
-import client.domen.Sponzor;
+import domen.FizickoLice;
+import domen.PravnoLice;
+import domen.Sponzor;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

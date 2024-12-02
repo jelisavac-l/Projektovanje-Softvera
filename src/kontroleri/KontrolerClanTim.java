@@ -1,9 +1,9 @@
 package kontroleri;
 
 import broker.DatabaseConnection;
-import client.domen.Clan;
-import client.domen.ClanTim;
-import client.domen.Tim;
+import domen.Clan;
+import domen.ClanTim;
+import domen.Tim;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

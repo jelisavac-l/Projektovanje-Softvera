@@ -5,7 +5,7 @@
 package client.ui;
 
 import audit.Audit;
-import client.domen.Faktura;
+import domen.Faktura;
 import client.ui.clan.FormClan;
 import client.ui.faktura.FormFaktura;
 import client.ui.sponzor.FormSponzor;

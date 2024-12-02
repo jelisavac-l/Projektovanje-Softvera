@@ -1,7 +1,7 @@
 package kontroleri;
 
 import broker.DatabaseConnection;
-import client.domen.Usluga;
+import domen.Usluga;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

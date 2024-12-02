@@ -1,4 +1,4 @@
-package client.domen;
+package domen;
 
 import java.util.List;
 

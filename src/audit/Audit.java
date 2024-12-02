@@ -1,6 +1,6 @@
 package audit;
 
-import client.domen.Clan;
+import domen.Clan;
 
 /**
  *

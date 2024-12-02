@@ -1,7 +1,7 @@
 package kontroleri;
 
 import broker.DatabaseConnection;
-import client.domen.Clan;
+import domen.Clan;
 import exepts.ModalException;
 import java.util.List;
 import java.sql.Connection;

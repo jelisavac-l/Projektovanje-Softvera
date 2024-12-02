@@ -1,6 +1,6 @@
 package client.ui.sponzor;
 
-import client.domen.Sponzor;
+import domen.Sponzor;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
