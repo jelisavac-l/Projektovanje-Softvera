@@ -44,5 +44,11 @@ public class Sponzor {
     public void setKontakt(String kontakt) {
         this.kontakt = kontakt;
     }
+
+    @Override
+    public String toString() {
+        return naziv;
+    }
+    
     
 }

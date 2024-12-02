@@ -5,6 +5,9 @@
 package client.ui.faktura;
 
 import client.domen.Faktura;
+import client.domen.FizickoLice;
+import client.domen.PravnoLice;
+import client.domen.StavkaFakture;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import kontroleri.KontrolerFaktura;
+import kontroleri.KontrolerUsluga;
 
 /**
  *
@@ -26,6 +30,11 @@ public class FormFaktura extends javax.swing.JFrame {
     public FormFaktura() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
+        try {
+            napuniTabelu();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -83,6 +92,8 @@ public class FormFaktura extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtCena = new javax.swing.JTextField();
+        txtPopust = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnDokumenti = new javax.swing.JMenu();
         mnPruzalac = new javax.swing.JMenu();
@@ -120,6 +131,7 @@ public class FormFaktura extends javax.swing.JFrame {
         pnlTools.add(btnDodaj);
 
         btnIzmeni.setText("Izmeni");
+        btnIzmeni.setEnabled(false);
         btnIzmeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIzmeniActionPerformed(evt);
@@ -224,17 +236,17 @@ public class FormFaktura extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        txtSponzorKontakt.setEnabled(false);
+        txtSponzorKontakt.setEditable(false);
 
-        txtRegBr.setEnabled(false);
+        txtRegBr.setEditable(false);
 
         jLabel7.setText("Kontakt");
 
-        txtPibJmbg.setEnabled(false);
+        txtPibJmbg.setEditable(false);
 
         jLabel6.setText("PIB (JMBG za fiz. lica)");
 
-        txtSponzor.setEnabled(false);
+        txtSponzor.setEditable(false);
 
         jLabel3.setText("Sponzor");
 
@@ -257,7 +269,7 @@ public class FormFaktura extends javax.swing.JFrame {
                             .addComponent(txtPibJmbg)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(0, 118, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(txtSponzorKontakt)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,17 +302,17 @@ public class FormFaktura extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        txtTim.setEnabled(false);
+        txtTim.setEditable(false);
 
         jLabel4.setText("Org. jedinica");
 
-        txtClan.setEnabled(false);
+        txtClan.setEditable(false);
 
         jLabel2.setText("Kontakt");
 
         jLabel1.setText("Izdavalac");
 
-        txtClanKontakt.setEnabled(false);
+        txtClanKontakt.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -340,19 +352,24 @@ public class FormFaktura extends javax.swing.JFrame {
 
         jLabel9.setText("Cena (Bez PDV)");
 
-        txtTotal.setEnabled(false);
+        txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
 
-        txtPdv.setEnabled(false);
+        txtPdv.setEditable(false);
 
         jLabel11.setText("Datum izdavanja");
 
-        txtDatum.setEnabled(false);
+        txtDatum.setEditable(false);
 
         jLabel10.setText("Total");
 
         jLabel8.setText("Iznos PDV");
 
-        txtCena.setEnabled(false);
+        txtCena.setEditable(false);
+
+        txtPopust.setEditable(false);
+
+        jLabel13.setText("Popust");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -361,23 +378,24 @@ public class FormFaktura extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(0, 151, Short.MAX_VALUE))
-                            .addComponent(txtCena))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(txtPdv, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtTotal)
                     .addComponent(txtDatum)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(txtTotal)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(txtCena, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txtPdv, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel13)
+                                .addComponent(txtPopust, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -386,17 +404,23 @@ public class FormFaktura extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPdv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPdv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPopust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -466,7 +490,12 @@ public class FormFaktura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        // TODO add your handling code here:
+        new CreateFaktura(null, true).setVisible(true);
+        try {
+            napuniTabelu();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
@@ -483,36 +512,81 @@ public class FormFaktura extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void tblFakturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFakturaMouseClicked
-
+        FakturaTableModel ftm = (FakturaTableModel) tblFaktura.getModel();
+        Faktura selektovana = ftm.getFromRow(tblFaktura.getSelectedRow());
+        try {
+            napuniTabeluUsluga(selektovana);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //
+        
+        Double osnovnaCena = selektovana.getOsnovnaCena();
+        Double pdv = selektovana.getPdv();
+        Double popust = selektovana.getPopust();
+        Double total = osnovnaCena + pdv - popust;
+        
+        // Postaviti vrednosti u polja za pregled
+        
+        txtClan.setText(selektovana.getClan().toString()); 
+        txtClanKontakt.setText(selektovana.getClan().getTelefon());
+        
+        // TODO:
+        txtTim.setText("POSLE CU OVO SA ASOC. KL.");
+        
+        txtSponzor.setText(selektovana.getSponzor().toString());
+        txtSponzorKontakt.setText(selektovana.getSponzor().getKontakt());
+        
+        // TODO:
+        
+//        if(selektovana.getSponzor() instanceof FizickoLice)
+//        {
+//            FizickoLice fl = (FizickoLice) selektovana.getSponzor();
+//            txtRegBr.setText("");
+//            txtPibJmbg.setText(fl.getJmbg());
+//        } else {
+//            PravnoLice pl = (PravnoLice) selektovana.getSponzor();
+//            txtRegBr.setText(pl.getRegBr());
+//            txtPibJmbg.setText(pl.getPIB());
+//        }
+        
+        
+        txtCena.setText(osnovnaCena.toString());
+        txtPdv.setText(pdv.toString());
+        txtPopust.setText(popust.toString());
+        txtTotal.setText(total.toString());
+        txtDatum.setText(selektovana.getDatum().toString());
 
     }//GEN-LAST:event_tblFakturaMouseClicked
 
     private void napuniTabelu() throws SQLException {
         List<Faktura> lf = KontrolerFaktura.getList();
-        TableModel tm = tblFaktura.getModel();
+        tblFaktura.setModel(new FakturaTableModel(lf));
+
+    }
+
+    private void napuniTabeluUsluga(Faktura f) throws SQLException {
+        List<StavkaFakture> lsf = KontrolerFaktura.pronadjiStavke(f);
+        TableModel tm = tblUsluga.getModel();
         DefaultTableModel dtm = (DefaultTableModel) tm;
         dtm.setRowCount(0);
-        for(Faktura f : lf)
-        {
+        for (StavkaFakture s : lsf) {
             Object[] row = new Object[]{
-                f.getId(),
-                f.getSponzor().getNaziv(),
-                f.getDatum(),
-                f.getUkupnaCena(),
-                f.getPdv(),
-                f.getClan().getIme() + " " + f.getClan().getPrezime()
-            };
-            
+                s.getUsluga().getNaziv(),
+                s.getUsluga().getCena(),
+                s.getKolicina()
+                
+            }; 
             dtm.addRow(row);
         }
     }
-    
     // Sve ucitane fakature
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
@@ -525,6 +599,7 @@ public class FormFaktura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -562,6 +637,7 @@ public class FormFaktura extends javax.swing.JFrame {
     private javax.swing.JTextField txtDatum;
     private javax.swing.JTextField txtPdv;
     private javax.swing.JTextField txtPibJmbg;
+    private javax.swing.JTextField txtPopust;
     private javax.swing.JTextField txtRegBr;
     private javax.swing.JTextField txtSponzor;
     private javax.swing.JTextField txtSponzorKontakt;

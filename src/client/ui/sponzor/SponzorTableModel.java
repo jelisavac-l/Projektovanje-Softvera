@@ -12,10 +12,6 @@ public class SponzorTableModel extends AbstractTableModel {
 
     String[] cols = {"Šifra", "Naziv", "Kontakt"};
 
-    @Override
-    public String getColumnName(int index) {
-        return cols[index];
-    }
     
     private List<Sponzor> ls;
 
@@ -26,6 +22,11 @@ public class SponzorTableModel extends AbstractTableModel {
 
     public void setLs(List<Sponzor> ls) {
         this.ls = ls;
+    }
+    
+    @Override
+    public String getColumnName(int index) {
+        return cols[index];
     }
 
     @Override

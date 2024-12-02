@@ -48,7 +48,7 @@ public class MainClient {
                 System.out.println(c.getIme() + " " + c.getPrezime());
             }
             
-            
+            System.out.println(KontrolerUsluga.getById(1L));
             
             if(lc == null || lct == null || lt == null || ls == null || lu == null || lf == null)
                 System.out.println("Ne radi nest");

@@ -14,40 +14,51 @@ import java.util.List;
 public class Faktura {
     private Long id;
     private Date datum;
-    private double ukupnaCena;
-    private double pdv;
-    private boolean storinirana;
+    private Double ukupnaCena;
+    private Double pdv;
+    private Double popust;
+    private Boolean stornirana;
     private Clan clan;
     private Sponzor sponzor;
-    private List<Usluga> listaUsluga;
+    private List<StavkaFakture> stavke;
     
-    public Faktura(Long id, Date datum, double ukupnaCena, double pdv, boolean storinirana, Clan clan, Sponzor sponzor, List<Usluga> listaUsluga) {
+    public Faktura(Long id, Date datum, Double ukupnaCena, Double pdv, Boolean storinirana, Clan clan, Sponzor sponzor, Double popust, List<StavkaFakture> stavke) {
         this.id = id;
         this.datum = datum;
         this.ukupnaCena = ukupnaCena;
         this.pdv = pdv;
-        this.storinirana = storinirana;
+        this.stornirana = storinirana;
         this.clan = clan;
         this.sponzor = sponzor;
-        this.listaUsluga = listaUsluga;
+        this.stavke = stavke;
+        this.popust = popust;
     }
 
-    public Faktura(Long id, Date datum, double ukupnaCena, double pdv, boolean storinirana, Clan clan, Sponzor sponzor) {
+    public Faktura(Long id, Date datum, Double ukupnaCena, Double pdv, Boolean storinirana, Clan clan, Sponzor sponzor, Double popust) {
         this.id = id;
         this.datum = datum;
         this.ukupnaCena = ukupnaCena;
         this.pdv = pdv;
-        this.storinirana = storinirana;
+        this.stornirana = storinirana;
         this.clan = clan;
+        this.popust = popust;
         this.sponzor = sponzor;
     }
-
-    public List<Usluga> getListaUsluga() {
-        return listaUsluga;
+    
+    public Double getPopust() {
+        return popust;
     }
 
-    public void setListaUsluga(List<Usluga> listaUsluga) {
-        this.listaUsluga = listaUsluga;
+    public void setPopust(Double popust) {
+        this.popust = popust;
+    }
+
+    public List<StavkaFakture> getListaStavkaFakture() {
+        return stavke;
+    }
+
+    public void setListaStavkaFakture(List<StavkaFakture> stavke) {
+        this.stavke = stavke;
     }
 
     public Long getId() {
@@ -66,7 +77,7 @@ public class Faktura {
         this.datum = datum;
     }
 
-    public double getUkupnaCena() {
+    public Double getOsnovnaCena() {
         return ukupnaCena;
     }
 
@@ -74,7 +85,7 @@ public class Faktura {
         this.ukupnaCena = ukupnaCena;
     }
 
-    public double getPdv() {
+    public Double getPdv() {
         return pdv;
     }
 
@@ -82,12 +93,13 @@ public class Faktura {
         this.pdv = pdv;
     }
 
-    public boolean isStorinirana() {
-        return storinirana;
+    public Boolean isStornirana() {
+        return stornirana;
     }
 
-    public void setStorinirana(boolean storinirana) {
-        this.storinirana = storinirana;
+    public void setStorinirana(boolean stornirana) {
+        // zastititi se i ovde
+        this.stornirana = stornirana;
     }
 
     public Clan getClan() {

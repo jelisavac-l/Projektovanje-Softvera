@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,7 +30,23 @@ public class KontrolerUsluga {
 
         rs.close();
         st.close();
-        conn.close();
         return lista;
+    }
+    
+    // Malo optimalniji nacin da se izvede pretraga
+    public static Usluga getById(Long id) throws RuntimeException, SQLException
+    {
+        
+        Connection conn = DatabaseConnection.getInstance();
+        String query = "SELECT * FROM usluga WHERE id=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setLong(1, id);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next())
+        {
+            return new Usluga(rs.getLong("id"), rs.getString("naziv"), rs.getDouble("cena"));
+        } else {
+            throw new RuntimeException("Nije pronadjena usluga sa zadatim ID-jem!");
+        }
     }
 }

@@ -42,5 +42,12 @@ public class Usluga {
     public void setCena(double cena) {
         this.cena = cena;
     }
+
+    @Override
+    public String toString() {
+        return naziv + " [RSD " + cena + "]";
+    }
+    
+    
     
 }

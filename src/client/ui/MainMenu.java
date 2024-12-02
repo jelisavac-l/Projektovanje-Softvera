@@ -45,6 +45,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15), new java.awt.Dimension(32767, 15));
         lbUser = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -91,6 +92,13 @@ public class MainMenu extends javax.swing.JFrame {
         lbUser.setText("Ulogovani korisnik:");
         lbUser.setMaximumSize(new java.awt.Dimension(1920, 24));
         jPanel1.add(lbUser);
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/client/ProjektovanjeSoftvera1.jpg"))); // NOI18N
+        jLabel4.setMaximumSize(new java.awt.Dimension(3000, 700));
+        jLabel4.setMinimumSize(new java.awt.Dimension(0, 0));
+        jLabel4.setName(""); // NOI18N
+        jPanel1.add(jLabel4);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -205,6 +213,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
