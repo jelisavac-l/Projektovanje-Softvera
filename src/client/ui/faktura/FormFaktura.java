@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import kontroleri.KontrolerFaktura;
+import kontroleri.KontrolerTim;
 import kontroleri.KontrolerUsluga;
 
 /**
@@ -536,8 +537,12 @@ public class FormFaktura extends javax.swing.JFrame {
         txtClan.setText(selektovana.getClan().toString()); 
         txtClanKontakt.setText(selektovana.getClan().getTelefon());
         
-        // TODO:
-        txtTim.setText("POSLE CU OVO SA ASOC. KL.");
+        try {
+            // TODO:
+            txtTim.setText(KontrolerTim.getTimFromClan(selektovana.getClan()).getNaziv());
+        } catch (SQLException ex) {
+            Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         txtSponzor.setText(selektovana.getSponzor().toString());
         txtSponzorKontakt.setText(selektovana.getSponzor().getKontakt());

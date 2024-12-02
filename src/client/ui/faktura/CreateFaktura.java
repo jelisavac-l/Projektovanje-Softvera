@@ -5,6 +5,8 @@ import client.domen.Sponzor;
 import client.domen.StavkaFakture;
 import client.domen.Usluga;
 import client.ui.sponzor.CreateSponzor;
+import exepts.ModalException;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -203,6 +205,11 @@ public class CreateFaktura extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblUsluge.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUslugeMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblUsluge);
 
         txtOsnovnaCena.setEditable(false);
@@ -359,12 +366,22 @@ public class CreateFaktura extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTotalActionPerformed
 
     private void btnUbaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbaciActionPerformed
-        // TODO add your handling code here:
-        if(txtKolicina.getText() == null || txtKolicina.getText() == "")
+        if (txtKolicina.getText() == null || txtKolicina.getText() == "") {
             txtKolicina.setText("1");
+        }
+
+        // Zabrana dodavanja vise istog tipa
         Usluga u = (Usluga) cbUsluga.getSelectedItem();
+        for (StavkaFakture sf : lsf) {
+            if (sf.getUsluga().equals(u)) {
+                sf.setKolicina(sf.getKolicina() + Integer.parseInt(txtKolicina.getText()));
+                initTable();
+                calculate();
+                return;
+            }
+        }
         lsf.add(new StavkaFakture(
-                (long) tblUsluge.getRowCount(),
+                (long) tblUsluge.getRowCount() + 1,
                 u,
                 Integer.parseInt(txtKolicina.getText())
         ));
@@ -377,8 +394,15 @@ public class CreateFaktura extends javax.swing.JDialog {
     }//GEN-LAST:event_btnUbaciActionPerformed
 
     private void txtPopustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPopustActionPerformed
-        // TODO add your handling code here:
-        calculate();
+        try {
+            calculate();
+            if(total <= 0)
+                throw new ModalException("Popust ne sme biti veći od osnovne cene!");
+        } catch (ModalException ex) {
+            Logger.getLogger(CreateFaktura.class.getName()).log(Level.SEVERE, null, ex);
+            txtPopust.setText("0");
+            calculate();
+        }
     }//GEN-LAST:event_txtPopustActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -431,6 +455,27 @@ public class CreateFaktura extends javax.swing.JDialog {
     private void txtKolicinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKolicinaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtKolicinaActionPerformed
+
+    private void tblUslugeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUslugeMouseClicked
+        // TODO add your handling code here:
+        int row = tblUsluge.getSelectedRow();
+        if(evt.getButton() == MouseEvent.BUTTON1)
+        {
+            lsf.get(row).setKolicina(lsf.get(row).getKolicina() - 1);
+            if(lsf.get(row).getKolicina() <= 0) {
+                lsf.remove(row);
+                calcIndexes();
+            }
+        }
+        
+        if(evt.getButton() == MouseEvent.BUTTON2)
+        {
+            lsf.remove(row);
+        }
+        
+        calculate();
+        calcIndexes();
+    }//GEN-LAST:event_tblUslugeMouseClicked
 
     private void calculate() throws NumberFormatException {
         osnovnaCena = 0.0;
@@ -500,5 +545,11 @@ public class CreateFaktura extends javax.swing.JDialog {
         for (Sponzor s : ls) {
             cbSponzor.addItem(s);
         }
+    }
+
+    private void calcIndexes() {
+        for(int i = 1; i < lsf.size(); i++)
+            lsf.get(i).setId((long)i);
+        initTable();
     }
 }

@@ -1,6 +1,7 @@
 package kontroleri;
 
 import broker.DatabaseConnection;
+import client.domen.Clan;
 import client.domen.Tim;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,25 @@ import java.util.List;
  * @author luka
  */
 public class KontrolerTim {
+    
+    public static Tim getTimFromClan(Clan clan) throws SQLException
+    {
+        Connection conn = DatabaseConnection.getInstance();
+        String query = "SELECT t.id, t.naziv FROM `clan-tim` ct JOIN tim t ON ct.clan = t.id WHERE ct.clan=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setLong(1, clan.getId());
+        Tim t;
+        ResultSet rs = ps.executeQuery();
+        if(rs.next())
+        {
+            t = new Tim(rs.getLong("id"),
+                    rs.getString("naziv"));
+            
+        } else {
+            t = null;
+        }
+        return t;
+    }
 
     public static List<Tim> getList() throws SQLException {
         List<Tim> lista = new LinkedList<>();
