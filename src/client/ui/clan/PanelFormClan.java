@@ -1,40 +1,30 @@
 package client.ui.clan;
 
 import domen.Clan;
-import domen.Tim;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
  *
  * @author luka
- * @deprecated Koristi se nova JPanel forma {@link PanelFormClan}
  */
-
-@Deprecated
-public class FormClan extends javax.swing.JFrame {
+public class PanelFormClan extends javax.swing.JPanel {
 
     /**
-     * Creates new form FormClan
+     * Creates new form PanelFormClan
      */
-    public FormClan() {
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+    public PanelFormClan() {
         initComponents();
-        initTableWidth();
         try {
             napuniTabelu();
         } catch (SQLException ex) {
-            Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PanelFormClan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -51,18 +41,14 @@ public class FormClan extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClan = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setMaximumSize(new java.awt.Dimension(32767, 40));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1156, 40));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1020, 40));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         btnLoad.setText("Učitaj");
@@ -92,11 +78,13 @@ public class FormClan extends javax.swing.JFrame {
         btnSearch.setText("Traži");
         jPanel2.add(btnSearch);
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(420, 25));
-        jPanel2.add(jTextField1);
+        txtSearch.setPreferredSize(new java.awt.Dimension(256, 25));
+        jPanel2.add(txtSearch);
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
+        add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 32000));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 85));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
         tblClan.setModel(new javax.swing.table.DefaultTableModel(
@@ -107,29 +95,31 @@ public class FormClan extends javax.swing.JFrame {
                 "Šifra", "Ime", "Prezime", "Korisničko ime", "Email", "Telefon"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tblClan);
+        if (tblClan.getColumnModel().getColumnCount() > 0) {
+            tblClan.getColumnModel().getColumn(0).setResizable(false);
+            tblClan.getColumnModel().getColumn(0).setPreferredWidth(12);
+            tblClan.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
-        pack();
+        add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
@@ -137,11 +127,11 @@ public class FormClan extends javax.swing.JFrame {
             napuniTabelu();
         } catch (SQLException ex) {
             Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }// TODO add your handling code here:
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        new CreateClan(this, true).setVisible(true);
+        new CreateClan(null, true).setVisible(true);
         try {
             napuniTabelu();
         } catch (SQLException ex) {
@@ -150,7 +140,6 @@ public class FormClan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
         int selectedRow = tblClan.getSelectedRow();
         // Ako nije selektovan ni jedan red, gornja f-ja vraca vrednost -1
         if(selectedRow < 0) {
@@ -158,15 +147,9 @@ public class FormClan extends javax.swing.JFrame {
             return;
         }
         System.out.println(selectedRow);
-        // Bitan je samo ID za izmenu.
-        new UpdateClan(this, true, new Clan(
-                (Long)tblClan.getValueAt(selectedRow, 0), 
-                (String)tblClan.getValueAt(selectedRow, 1), 
-                (String)tblClan.getValueAt(selectedRow, 2), 
-                (String)tblClan.getValueAt(selectedRow, 3), 
-                "NULL", 
-                (String)tblClan.getValueAt(selectedRow, 4), 
-                (String)tblClan.getValueAt(selectedRow, 5))).setVisible(true);
+        
+        ClanTableModel ctm = (ClanTableModel) tblClan.getModel();
+        new UpdateClan(null, true, ctm.getRowValue(selectedRow)).setVisible(true);
         
         try {
             napuniTabelu();
@@ -181,46 +164,16 @@ public class FormClan extends javax.swing.JFrame {
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblClan;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
-
-    private void initTableWidth() { // Moze i ovako?!
-        TableColumnModel columnModel = tblClan.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(50);
-        columnModel.getColumn(0).setMaxWidth(50);
-        columnModel.getColumn(1).setPreferredWidth(250);
-        columnModel.getColumn(1).setMaxWidth(250);
-        columnModel.getColumn(2).setPreferredWidth(250);
-        columnModel.getColumn(2).setMaxWidth(250);
-        columnModel.getColumn(3).setPreferredWidth(250);
-        columnModel.getColumn(3).setMaxWidth(250);
-    }
-
+    
     private void napuniTabelu() throws SQLException {
-        List<Clan> lc = kontroleri.KontrolerClan.getList();
-        TableModel tm = tblClan.getModel();
-        DefaultTableModel dtm = (DefaultTableModel) tm;
-        dtm.setRowCount(0);
-        
-        for(Clan c : lc)
-        {
-                dtm.addRow(new Object[]{
-                    c.getId(),
-                    c.getIme(),
-                    c.getPrezime(),
-                    c.getKorisnickoIme(),
-                    c.getEmail(),
-                    c.getTelefon()
-                }
-            );
+            List<Clan> lc = kontroleri.KontrolerClan.getList();
+            tblClan.setModel(new ClanTableModel(lc));
+
         }
-        
-    }
 }

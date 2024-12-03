@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/faktura/CreateFaktura.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerFaktura.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/faktura/FormFaktura.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerClanTim.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/domen/Faktura.java</file>
-            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/kontroleri/KontrolerTim.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/clan/UpdateClan.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/MainMenu.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/clan/PanelFormClan.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/ActiveForm.java</file>
+            <file>file:/home/luka/Repos/ProjektovanjeSoftvera/src/client/ui/clan/FormClan.java</file>
         </group>
     </open-files>
 </project-private>

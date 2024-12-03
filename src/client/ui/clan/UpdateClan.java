@@ -31,7 +31,7 @@ public class UpdateClan extends javax.swing.JDialog {
         txtTelefon.setText(clan.getTelefon());
         txtKorisnickoIme.setText(clan.getKorisnickoIme());
         // TODO: Ne ovo
-        txtSifra.setText(clan.getSifra());
+        //txtSifra.setText(clan.getSifra());
 
     }
 

@@ -16,7 +16,9 @@ import javax.swing.table.TableModel;
 /**
  *
  * @author luka
+ * @deprecated Koristi se nova, JPanel forma {@link PanelFormSponzor}
  */
+@Deprecated
 public class FormSponzor extends javax.swing.JFrame {
 
     /**

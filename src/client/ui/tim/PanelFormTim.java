@@ -1,43 +1,32 @@
 package client.ui.tim;
 
-import client.ui.clan.*;
+import client.ui.clan.FormClan;
 import domen.Clan;
 import domen.Tim;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
  *
  * @author luka
- * @deprecated Koristi se nova JPanel forma {@link PanelFormTim}
  */
-
-@Deprecated
-public class FormTim extends javax.swing.JFrame {
+public class PanelFormTim extends javax.swing.JPanel {
 
     /**
-     * Creates new form FormClan
+     * Creates new form PanelFormTim
      */
-    public FormTim() {
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+    public PanelFormTim() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        
         try {
             napuniTabeluTim();
         } catch (SQLException ex) {
             Logger.getLogger(FormTim.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     /**
@@ -49,28 +38,24 @@ public class FormTim extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         btnLoad = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTim = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         btnUbaci = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblClan = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setMaximumSize(new java.awt.Dimension(32767, 40));
-        jPanel3.setPreferredSize(new java.awt.Dimension(1156, 40));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1024, 40));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         btnLoad.setText("Učitaj");
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +63,7 @@ public class FormTim extends javax.swing.JFrame {
                 btnLoadActionPerformed(evt);
             }
         });
-        jPanel3.add(btnLoad);
+        jPanel2.add(btnLoad);
 
         btnAdd.setText("Dodaj");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +71,7 @@ public class FormTim extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel3.add(btnAdd);
+        jPanel2.add(btnAdd);
 
         btnUpdate.setText("Izmeni");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -94,16 +79,22 @@ public class FormTim extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel3.add(btnUpdate);
+        jPanel2.add(btnUpdate);
 
         btnSearch.setText("Traži");
-        jPanel3.add(btnSearch);
+        jPanel2.add(btnSearch);
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(420, 25));
-        jPanel3.add(jTextField2);
+        jTextField1.setPreferredSize(new java.awt.Dimension(256, 25));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField1);
 
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 40));
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
         tblTim.setModel(new javax.swing.table.DefaultTableModel(
@@ -114,9 +105,16 @@ public class FormTim extends javax.swing.JFrame {
                 "Šifra", "Naziv"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -131,29 +129,39 @@ public class FormTim extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1);
 
-        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        btnUbaci.setText("Ubaci člana");
+        btnUbaci.setText("Dodaj člana u tim");
         btnUbaci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUbaciActionPerformed(evt);
             }
         });
-        jPanel2.add(btnUbaci);
+        jPanel3.add(btnUbaci);
 
-        jPanel1.add(jPanel2);
+        jPanel1.add(jPanel3);
 
         tblClan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
                 "Šifra", "Ime", "Prezime", "Korisničko ime", "Email", "Telefon"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -163,18 +171,12 @@ public class FormTim extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
-        pack();
+        add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         try {
@@ -185,43 +187,46 @@ public class FormTim extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        new CreateTim(this, true).setVisible(true);
+        new CreateTim(null, true).setVisible(true);
         try {
             napuniTabeluTim();
         } catch (SQLException ex) {
-            Logger.getLogger(FormClan.class.getName()).log(Level.SEVERE, null, ex);
+            // TODO: Dopisati
+            System.err.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int row = tblTim.getSelectedRow();
-        if(row < 0) {
+        if (row < 0) {
             JOptionPane.showMessageDialog(null, "Nije odabran red!", "Sistem", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        new UpdateTim(null, true, new Tim((Long)tblTim.getValueAt(row, 0), (String)tblTim.getValueAt(row, 1))).setVisible(true);
+        new UpdateTim(null, true, new Tim((Long) tblTim.getValueAt(row, 0), (String) tblTim.getValueAt(row, 1))).setVisible(true);
         try {
             napuniTabeluTim();
         } catch (SQLException ex) {
-            Logger.getLogger(FormTim.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
-
     }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void tblTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTimMouseClicked
-        int row = tblTim.getSelectedRow();
-        if(row < 0) return;
-        
-        try {
-            napuniTabeluClan(new Tim((Long)tblTim.getValueAt(row, 0), (String)tblTim.getValueAt(row, 1)));
-        } catch (SQLException ex) {
-            Logger.getLogger(FormTim.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_tblTimMouseClicked
 
     private void btnUbaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbaciActionPerformed
         new CreateClanTim(null, true).setVisible(true);
+
     }//GEN-LAST:event_btnUbaciActionPerformed
+
+    private void tblTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTimMouseClicked
+        int row = tblTim.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+
+        try {
+            napuniTabeluClan(new Tim((Long) tblTim.getValueAt(row, 0), (String) tblTim.getValueAt(row, 1)));
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_tblTimMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -230,27 +235,22 @@ public class FormTim extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUbaci;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblClan;
     private javax.swing.JTable tblTim;
     // End of variables declaration//GEN-END:variables
-
 
     private void napuniTabeluClan(Tim tim) throws SQLException {
         List<Clan> lc = kontroleri.KontrolerClanTim.getClanoviTima(tim);
         TableModel tm = tblClan.getModel();
         DefaultTableModel dtm = (DefaultTableModel) tm;
         dtm.setRowCount(0);
-        for(Clan c : lc)
-        {
+        for (Clan c : lc) {
             Object[] row = new Object[]{
                 c.getId(),
                 c.getIme(),
@@ -261,7 +261,7 @@ public class FormTim extends javax.swing.JFrame {
             };
             dtm.addRow(row);
         }
-        
+
     }
 
     private void napuniTabeluTim() throws SQLException {
@@ -269,14 +269,13 @@ public class FormTim extends javax.swing.JFrame {
         TableModel tm = tblTim.getModel();
         DefaultTableModel dtm = (DefaultTableModel) tm;
         dtm.setRowCount(0);
-        for(Tim t : lt) {
-            Object[] row = new Object[] {
+        for (Tim t : lt) {
+            Object[] row = new Object[]{
                 t.getId(),
                 t.getNaziv()
             };
             dtm.addRow(row);
         }
-         
-        
+
     }
 }

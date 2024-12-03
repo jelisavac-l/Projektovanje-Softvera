@@ -7,9 +7,13 @@ package client.ui;
 import audit.Audit;
 import domen.Faktura;
 import client.ui.clan.FormClan;
+import client.ui.clan.PanelFormClan;
 import client.ui.faktura.FormFaktura;
 import client.ui.sponzor.FormSponzor;
+import client.ui.sponzor.PanelFormSponzor;
 import client.ui.tim.FormTim;
+import client.ui.tim.PanelFormTim;
+import javax.swing.JPanel;
 
 /**
  *
@@ -187,11 +191,11 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        new FormSponzor().setVisible(true);
+        swapPanel(new PanelFormSponzor());
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -199,12 +203,18 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        new FormTim().setVisible(true);
+        swapPanel(new PanelFormTim());
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new FormClan().setVisible(true);
+        swapPanel(new PanelFormClan());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void swapPanel(JPanel panel) {
+        jPanel1.removeAll();
+        jPanel1.add(panel);
+        pack();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
