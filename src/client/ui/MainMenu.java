@@ -9,6 +9,7 @@ import domen.Faktura;
 import client.ui.clan.FormClan;
 import client.ui.clan.PanelFormClan;
 import client.ui.faktura.FormFaktura;
+import client.ui.faktura.PanelFormFaktura;
 import client.ui.sponzor.FormSponzor;
 import client.ui.sponzor.PanelFormSponzor;
 import client.ui.tim.FormTim;
@@ -186,7 +187,7 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new FormFaktura().setVisible(true);
+        swapPanel(new PanelFormFaktura());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -195,7 +196,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
+
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed

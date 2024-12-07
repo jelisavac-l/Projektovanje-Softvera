@@ -90,7 +90,7 @@ public class CreateFaktura extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lorem"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Odabir usluge"));
 
         jLabel2.setText("Količina");
 
@@ -151,7 +151,7 @@ public class CreateFaktura extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lorem"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Odabir sponzora"));
 
         jLabel1.setText("Sponzor");
 
@@ -192,7 +192,7 @@ public class CreateFaktura extends javax.swing.JDialog {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lorem"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Pregled"));
 
         tblUsluge.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

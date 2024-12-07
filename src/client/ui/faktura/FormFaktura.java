@@ -22,7 +22,10 @@ import kontroleri.KontrolerUsluga;
 /**
  *
  * @author luka
+ * @deprecated Koristi se nova JPanel forma {@link PanelFormFaktura}
  */
+
+@Deprecated
 public class FormFaktura extends javax.swing.JFrame {
 
     /**
@@ -52,9 +55,9 @@ public class FormFaktura extends javax.swing.JFrame {
         pnlWrapper = new javax.swing.JPanel();
         pnlTools = new javax.swing.JPanel();
         btnLoad = new javax.swing.JButton();
-        btnDodaj = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         btnIzmeni = new javax.swing.JButton();
-        btnTrazi = new javax.swing.JButton();
+        txtSearch = new javax.swing.JButton();
         txtTrazi = new javax.swing.JTextField();
         rbClan = new javax.swing.JRadioButton();
         rbSponzor = new javax.swing.JRadioButton();
@@ -123,13 +126,13 @@ public class FormFaktura extends javax.swing.JFrame {
         });
         pnlTools.add(btnLoad);
 
-        btnDodaj.setText("Dodaj");
-        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Dodaj");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDodajActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        pnlTools.add(btnDodaj);
+        pnlTools.add(btnAdd);
 
         btnIzmeni.setText("Izmeni");
         btnIzmeni.setEnabled(false);
@@ -140,13 +143,13 @@ public class FormFaktura extends javax.swing.JFrame {
         });
         pnlTools.add(btnIzmeni);
 
-        btnTrazi.setText("Traži");
-        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.setText("Traži");
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraziActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        pnlTools.add(btnTrazi);
+        pnlTools.add(txtSearch);
 
         txtTrazi.setMaximumSize(new java.awt.Dimension(2147483647, 300));
         txtTrazi.setPreferredSize(new java.awt.Dimension(420, 25));
@@ -490,18 +493,18 @@ public class FormFaktura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         new CreateFaktura(null, true).setVisible(true);
         try {
             napuniTabelu();
         } catch (SQLException ex) {
             Logger.getLogger(FormFaktura.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnDodajActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnTraziActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
         // TODO add your handling code here:
@@ -594,11 +597,10 @@ public class FormFaktura extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnStornijaj;
-    private javax.swing.JButton btnTrazi;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -644,6 +646,7 @@ public class FormFaktura extends javax.swing.JFrame {
     private javax.swing.JTextField txtPibJmbg;
     private javax.swing.JTextField txtPopust;
     private javax.swing.JTextField txtRegBr;
+    private javax.swing.JButton txtSearch;
     private javax.swing.JTextField txtSponzor;
     private javax.swing.JTextField txtSponzorKontakt;
     private javax.swing.JTextField txtTim;
